@@ -1,0 +1,1 @@
+Monorepo zawierające aplikację we Flutterze (`/frontend`) oraz API (`/backend`).
