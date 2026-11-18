@@ -2,11 +2,6 @@
 
 &gt; **Automatyzacja pomiaru odzieży, unikalne kody wymiarów oraz inteligentny silnik dopasowania ubrań do sylwetki dla rynku C2C (Vinted, OLX) i e-commerce.**
 
-[![Backend]([suspicious link removed])]([suspicious link removed])
-[![Mobile]([suspicious link removed])]([suspicious link removed])
-[![Database]([suspicious link removed])]([suspicious link removed])
-[![License]([suspicious link removed])](LICENSE)
-
 ---
 
 ## 📌 O Projekcie
