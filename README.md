@@ -81,9 +81,9 @@ fitcheck/
 
 ### Wymagania wstępne
 
-* [.NET 10 SDK]([suspicious link removed])
-* [Flutter SDK (v3.22+)]([suspicious link removed])
-* [Docker &amp; Docker Compose]([suspicious link removed])
+* [.NET 10 SDK]
+* [Flutter SDK (v3.22+)]
+* [Docker &amp; Docker Compose]
 
 ### 1\. Uruchomienie Bazy Danych
 
