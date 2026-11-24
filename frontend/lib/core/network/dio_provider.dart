@@ -24,9 +24,10 @@ Dio dio(Ref ref) {
   dio.interceptors.add(AuthInterceptor(ref.watch(tokenStorageProvider)));
 
   if (kDebugMode) {
+    // Request bodies are not logged: they can contain passwords.
     dio.interceptors.add(
       LogInterceptor(
-        requestBody: true,
+        requestBody: false,
         responseBody: true,
         logPrint: (line) => debugPrint(line.toString()),
       ),

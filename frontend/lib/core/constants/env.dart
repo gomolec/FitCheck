@@ -10,6 +10,12 @@ abstract final class Env {
 
   /// Backend REST API base URL. Falls back to the local backend
   /// as seen from the Android emulator.
-  static String get apiBaseUrl =>
-      dotenv.maybeGet('API_BASE_URL') ?? 'http://10.0.2.2:5232/api';
+  static String get apiBaseUrl => withTrailingSlash(
+        dotenv.maybeGet('API_BASE_URL') ?? 'http://10.0.2.2:5232/api',
+      );
+
+  /// Dio joins `baseUrl` and a relative path verbatim, so `.../api` +
+  /// `auth/login` would become `.../apiauth/login` without the slash.
+  static String withTrailingSlash(String url) =>
+      url.endsWith('/') ? url : '$url/';
 }
