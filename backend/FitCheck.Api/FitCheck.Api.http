@@ -1,0 +1,11 @@
+@FitCheck.Api_HostAddress = http://localhost:5232
+
+POST {{FitCheck.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@fitcheck.pl",
+  "password": "Haslo123!zleh"
+}
+
+###
