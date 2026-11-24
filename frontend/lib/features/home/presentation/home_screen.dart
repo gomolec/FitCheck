@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../../../core/routing/app_routes.dart';
 import '../../auth/application/auth_controller.dart';
 
 /// Placeholder start screen shown after login.
@@ -15,6 +17,10 @@ class HomeScreen extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text('FitCheck'),
+            ElevatedButton(
+              onPressed: () => context.push(AppRoutes.addGarment),
+              child: const Text('Dodaj ubranie'),
+            ),
             TextButton(
               onPressed: () => ref.read(authControllerProvider.notifier).logout(),
               child: const Text('Wyloguj'),
