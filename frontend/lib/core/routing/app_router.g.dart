@@ -21,7 +21,7 @@ final class AppRouterProvider
         argument: null,
         retry: null,
         name: r'appRouterProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -48,4 +48,4 @@ final class AppRouterProvider
   }
 }
 
-String _$appRouterHash() => r'5d80ed7fb8492f016ce13a177b37f5852748730b';
+String _$appRouterHash() => r'2cc580e633bacb6a07ed528220e4be342706f13f';
