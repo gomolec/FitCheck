@@ -1,17 +1,18 @@
-# fitcheck
+# FitCheck – mobile app (Flutter)
 
-A new Flutter project.
+## Setup
 
-## Getting Started
+```bash
+flutter pub get
+dart run build_runner build
+```
 
-This project is a starting point for a Flutter application.
+Generated files (`*.g.dart`, `*.freezed.dart`) are not committed. Re-run
+`dart run build_runner build` after pulling changes to providers or models,
+or keep `dart run build_runner watch` running while developing.
 
-A few resources to get you started if this is your first Flutter project:
+## Configuration
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Optional: copy `env/app.env.example` to `env/app.env` (git-ignored) to override
+the API base URL. Without it the app uses `http://10.0.2.2:5232/api`
+(the local backend as seen from the Android emulator).
