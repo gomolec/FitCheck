@@ -1,11 +1,14 @@
-@FitCheck.Api_HostAddress = http://localhost:5232
+@FitCheck.Api_HostAddress = https://localhost:7007
 
+### 1. Logowanie 
 POST {{FitCheck.Api_HostAddress}}/api/auth/login
 Content-Type: application/json
 
 {
   "email": "admin@fitcheck.pl",
-  "password": "Haslo123!zleh"
+  "password": "Haslo123!"
 }
 
-###
+### 2. Chroniony endpoint (bez tokena : 401, z tokenem : 200)
+GET {{FitCheck.Api_HostAddress}}/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhZG1pbkBmaXRjaGVjay5wbCIsImp0aSI6IjQzYmU1MWFjLTg2YTUtNDBiYi1iNTI4LTNmM2M0MWU1ZjA2YiIsImV4cCI6MTc5NTU1NDQ1NCwiaXNzIjoiRml0Q2hlY2suQXBpIiwiYXVkIjoiRml0Q2hlY2suQXBwIn0.imwIvH1bTa5ayQBiZd2MfEzAKf7WyiYD-hIPQiiQB5w
