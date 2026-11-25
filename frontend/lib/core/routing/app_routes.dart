@@ -6,4 +6,5 @@ abstract final class AppRoutes {
   static const wardrobe = '/wardrobe';
   static const settings = '/settings';
   static const measurements = '/measurements';
+  static const addMeasurements = '/measurements/add';
 }

@@ -6,6 +6,7 @@ import '../../features/add_garment/presentation/add_garment_screen.dart';
 import '../../features/auth/application/auth_controller.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/check/presentation/check_screen.dart';
+import '../../features/measurements/presentation/add_measurements_screen.dart';
 import '../../features/measurements/presentation/measurements_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/wardrobe/presentation/wardrobe_screen.dart';
@@ -82,6 +83,10 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: AppRoutes.measurements,
         builder: (context, state) => const MeasurementsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.addMeasurements,
+        builder: (context, state) => const AddMeasurementsScreen(),
       ),
     ],
   );
