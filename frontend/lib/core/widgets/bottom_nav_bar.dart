@@ -15,7 +15,7 @@ const _tabs = [
   _NavTab(icon: Icons.search, label: 'Sprawdź'),
   _NavTab(icon: Icons.camera_alt_outlined, label: 'Dodaj'),
   _NavTab(icon: Icons.checkroom_outlined, label: 'Ubrania'),
-  _NavTab(icon: Icons.person_outline, label: 'Wymiary'),
+  _NavTab(icon: Icons.settings_outlined, label: 'Ustawienia'),
 ];
 
 /// Reactive bottom navigation bar shared across the main shell tabs.

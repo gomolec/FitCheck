@@ -7,6 +7,7 @@ import '../../features/auth/application/auth_controller.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/check/presentation/check_screen.dart';
 import '../../features/measurements/presentation/measurements_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/wardrobe/presentation/wardrobe_screen.dart';
 import 'app_routes.dart';
 import 'main_shell.dart';
@@ -71,12 +72,16 @@ GoRouter appRouter(Ref ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: AppRoutes.measurements,
-                builder: (context, state) => const MeasurementsScreen(),
+                path: AppRoutes.settings,
+                builder: (context, state) => const SettingsScreen(),
               ),
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.measurements,
+        builder: (context, state) => const MeasurementsScreen(),
       ),
     ],
   );

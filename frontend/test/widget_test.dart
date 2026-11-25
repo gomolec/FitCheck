@@ -3,7 +3,7 @@ import 'package:fitcheck/core/widgets/bottom_nav_bar.dart';
 import 'package:fitcheck/features/auth/data/auth_repository.dart';
 import 'package:fitcheck/features/auth/presentation/login_screen.dart';
 import 'package:fitcheck/features/check/presentation/check_screen.dart';
-import 'package:fitcheck/features/measurements/presentation/measurements_screen.dart';
+import 'package:fitcheck/features/settings/presentation/settings_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -25,6 +25,9 @@ class _FakeAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<String?> fetchCurrentUserEmail() async => 'admin@fitcheck.pl';
+
+  @override
   Future<void> logout() async => loggedIn = false;
 }
 
@@ -41,13 +44,18 @@ void main() {
     expect(find.text('Sprawdź'), findsOneWidget);
   });
 
-  testWidgets('measurements screen renders logout action', (tester) async {
+  testWidgets('settings screen renders user email and logout action', (
+    tester,
+  ) async {
     await tester.pumpWidget(
-      _app(const MeasurementsScreen(), _FakeAuthRepository()),
+      _app(const SettingsScreen(), _FakeAuthRepository()),
     );
+    await tester.pumpAndSettle();
 
-    expect(find.text('Wymiary'), findsOneWidget);
-    expect(find.text('Wyloguj'), findsOneWidget);
+    expect(find.text('Ustawienia'), findsOneWidget);
+    expect(find.text('admin@fitcheck.pl'), findsAtLeastNWidgets(1));
+    expect(find.text('Zarządzaj wymiarami'), findsOneWidget);
+    expect(find.text('Wyloguj się'), findsOneWidget);
   });
 
   testWidgets('bottom nav bar notifies on tab tap', (tester) async {
@@ -70,7 +78,7 @@ void main() {
     await tester.tap(find.text('Ubrania'));
     expect(tappedIndex, 2);
 
-    await tester.tap(find.text('Wymiary'));
+    await tester.tap(find.text('Ustawienia'));
     expect(tappedIndex, 3);
   });
 
