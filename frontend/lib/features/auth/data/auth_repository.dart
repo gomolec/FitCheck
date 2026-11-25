@@ -47,6 +47,17 @@ class AuthRepository {
     }
   }
 
+  /// `GET auth/me` → `{ email }`. Returns `null` if unavailable.
+  Future<String?> fetchCurrentUserEmail() async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>('auth/me');
+      final email = response.data?['email'];
+      return email is String && email.isNotEmpty ? email : null;
+    } on DioException {
+      return null;
+    }
+  }
+
   Future<void> logout() => _tokens.clear();
 
   AuthException _toAuthException(DioException e) {
@@ -67,3 +78,7 @@ class AuthRepository {
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(Ref ref) =>
     AuthRepository(ref.watch(dioProvider), ref.watch(tokenStorageProvider));
+
+@riverpod
+Future<String?> currentUserEmail(Ref ref) =>
+    ref.watch(authRepositoryProvider).fetchCurrentUserEmail();
