@@ -82,6 +82,7 @@ void main() {
 
     await tester.enterText(find.byType(TextField).first, 'a@b.pl');
     await tester.enterText(find.byType(TextField).last, 'zle');
+    await tester.ensureVisible(find.text('Zaloguj'));
     await tester.tap(find.text('Zaloguj'));
     await tester.pumpAndSettle();
 
@@ -93,6 +94,7 @@ void main() {
     final repo = _FakeAuthRepository();
     await tester.pumpWidget(_app(const LoginScreen(), repo));
 
+    await tester.ensureVisible(find.text('Zaloguj'));
     await tester.tap(find.text('Zaloguj'));
     await tester.pumpAndSettle();
 
