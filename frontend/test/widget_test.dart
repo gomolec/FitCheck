@@ -1,6 +1,9 @@
+import 'package:fitcheck/core/theme/app_theme.dart';
+import 'package:fitcheck/core/widgets/bottom_nav_bar.dart';
 import 'package:fitcheck/features/auth/data/auth_repository.dart';
 import 'package:fitcheck/features/auth/presentation/login_screen.dart';
-import 'package:fitcheck/features/home/presentation/home_screen.dart';
+import 'package:fitcheck/features/check/presentation/check_screen.dart';
+import 'package:fitcheck/features/measurements/presentation/measurements_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
@@ -26,16 +29,49 @@ class _FakeAuthRepository implements AuthRepository {
 }
 
 Widget _app(Widget home, _FakeAuthRepository repo) => ProviderScope(
-      overrides: [authRepositoryProvider.overrideWithValue(repo)],
-      child: MaterialApp(home: home),
-    );
+  overrides: [authRepositoryProvider.overrideWithValue(repo)],
+  child: MaterialApp(theme: AppTheme.light, home: home),
+);
 
 void main() {
-  testWidgets('home screen renders', (tester) async {
-    await tester.pumpWidget(_app(const HomeScreen(), _FakeAuthRepository()));
+  testWidgets('check screen renders FitCheck hero', (tester) async {
+    await tester.pumpWidget(_app(const CheckScreen(), _FakeAuthRepository()));
 
     expect(find.text('FitCheck'), findsOneWidget);
+    expect(find.text('Sprawdź'), findsOneWidget);
+  });
+
+  testWidgets('measurements screen renders logout action', (tester) async {
+    await tester.pumpWidget(
+      _app(const MeasurementsScreen(), _FakeAuthRepository()),
+    );
+
+    expect(find.text('Wymiary'), findsOneWidget);
     expect(find.text('Wyloguj'), findsOneWidget);
+  });
+
+  testWidgets('bottom nav bar notifies on tab tap', (tester) async {
+    var tappedIndex = -1;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light,
+        home: Scaffold(
+          bottomNavigationBar: FitCheckBottomNavBar(
+            currentIndex: 0,
+            onTap: (index) => tappedIndex = index,
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Dodaj'));
+    expect(tappedIndex, 1);
+
+    await tester.tap(find.text('Ubrania'));
+    expect(tappedIndex, 2);
+
+    await tester.tap(find.text('Wymiary'));
+    expect(tappedIndex, 3);
   });
 
   testWidgets('login screen shows backend error message', (tester) async {

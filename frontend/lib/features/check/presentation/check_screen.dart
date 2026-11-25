@@ -1,15 +1,16 @@
-import 'package:fitcheck/core/theme/theme_context_extension.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:gap/gap.dart';
+import 'package:material_ui/material_ui.dart';
 
-class DemoScreen extends StatelessWidget {
-  const DemoScreen({super.key});
+import '../../../core/theme/theme_context_extension.dart';
+
+/// Main "Sprawdź" tab allowing users to check garment fit by share code.
+class CheckScreen extends StatelessWidget {
+  const CheckScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.ground,
-      bottomNavigationBar: _buildBottomNav(context),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -255,71 +256,6 @@ class DemoScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildBottomNav(BuildContext context) {
-    return Container(
-      color: context.colors.surface,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(
-              context,
-              icon: Icons.search,
-              label: 'Sprawdź',
-              isActive: true,
-            ),
-            _buildNavItem(
-              context,
-              icon: Icons.camera_alt_outlined,
-              label: 'Dodaj',
-            ),
-            _buildNavItem(
-              context,
-              icon: Icons.checkroom_outlined,
-              label: 'Ubrania',
-            ),
-            _buildNavItem(
-              context,
-              icon: Icons.person_outline,
-              label: 'Wymiary',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(
-    BuildContext context, {
-    required IconData icon,
-    required String label,
-    bool isActive = false,
-  }) {
-    final color = isActive ? context.colors.ink : context.colors.ink2;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color),
-        const Gap(4),
-        Text(
-          label,
-          style: context.typo.small.copyWith(
-            color: color,
-            fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-          ),
-        ),
-        if (isActive)
-          Container(
-            margin: const EdgeInsets.only(top: 4),
-            height: 2,
-            width: 24,
-            color: context.colors.ink,
-          ),
-      ],
     );
   }
 }

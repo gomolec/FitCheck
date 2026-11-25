@@ -91,7 +91,15 @@ class _AddGarmentScreenState extends ConsumerState<AddGarmentScreen> {
       case _measurementsStep:
         _save();
       case _codeStep:
-        context.pop();
+        if (context.canPop()) {
+          context.pop();
+        } else {
+          setState(() {
+            _step = _garmentStep;
+            _code = null;
+          });
+          StatefulNavigationShell.maybeOf(context)?.goBranch(0);
+        }
     }
   }
 
